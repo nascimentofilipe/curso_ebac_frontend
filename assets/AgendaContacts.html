@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda de Contatos</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+
+<h2>Agenda de Contatos</h2>
+
+<form id="contactForm">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="phone">Telefone:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="Formato: 123-4567-8910" required><br><br>
+    <button type="submit">Cadastrar</button>
+</form>
+
+<table id="contactsTable">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Linhas de contatos serão adicionadas aqui -->
+    </tbody>
+</table>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var name = document.getElementById("name").value;
+        var phone = document.getElementById("phone").value;
+        
+        addContact(name, phone);
+        document.getElementById("contactForm").reset();
+    });
+
+    function addContact(name, phone) {
+        var table = document.getElementById("contactsTable").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        cell1.innerHTML = name;
+        cell2.innerHTML = phone;
+    }
+</script>
+
+</body>
+</html>
